@@ -4,6 +4,7 @@ const app = new Koa();
 const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 const errHandler = require('./lib/errorHandler');
+mongoose.plugin(require('./lib/toJSON'));
 mongoose.Promise = require('bluebird');
 
 mongoose.connect(dbURI);
