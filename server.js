@@ -1,8 +1,10 @@
 const Koa = require('koa');
 const IO = require('koa-socket');
+const send = require('koa-send');
 const {port, dbURI} = require('./config/environment');
 const app = new Koa();
 const io = new IO();
+const serve = require('koa-static');
 const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 const errHandler = require('./lib/errorHandler');
@@ -11,11 +13,15 @@ mongoose.plugin(require('./lib/toJSON'));
 mongoose.Promise = require('bluebird');
 
 mongoose.connect(dbURI);
-
+app.use(serve(`${__dirname}/build`));
 app.use(bodyParser());
 
 app.use(routes.routes());
 
+
+app.use(async (ctx)=>{
+  await send(ctx, 'build/index.html');
+});
 app.use(errHandler);
 
 io.attach( app );

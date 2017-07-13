@@ -1,6 +1,6 @@
 const router = new require('koa-router')();
 
-router.get('/', (ctx)=>{
+router.get('/api/', (ctx)=>{
   ctx.body = 'hello world';
 });
 
