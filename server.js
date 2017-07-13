@@ -15,9 +15,20 @@ mongoose.connect(dbURI);
 app.use(bodyParser());
 
 app.use(routes.routes());
+
 app.use(errHandler);
+
 io.attach( app );
+
 io.on('join', (ctx, data)=>{
   console.log('event fire', data);
 });
+console.log('logging from the server');
+
+io.on('disconnect', async ()=>{
+  console.log('disconnecting socket');
+  await io.sockets.disconnect();
+  await io.sockets.close();
+});
+
 app.listen(port, ()=> console.log(`Koa is up and running on port ${port}`));
