@@ -7,7 +7,7 @@ export default class Chat extends React.Component{
   }
 
   componentDidMount(){
-    const socket = io();
+    let socket = io('http://localhost:3000');
     console.log(socket);
     socket.emit('connection', {
       message: 'Hello from the other side'
