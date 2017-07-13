@@ -1,6 +1,8 @@
 const Koa = require('koa');
+const IO = require('koa-socket');
 const {port, dbURI} = require('./config/environment');
 const app = new Koa();
+const io = new IO();
 const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 const errHandler = require('./lib/errorHandler');
@@ -14,4 +16,8 @@ app.use(bodyParser());
 
 app.use(routes.routes());
 app.use(errHandler);
+io.attach( app );
+io.on('join', (ctx, data)=>{
+  console.log('event fire', data);
+});
 app.listen(port, ()=> console.log(`Koa is up and running on port ${port}`));
