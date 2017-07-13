@@ -6,7 +6,7 @@ const injectConfig = new HtmlWebpackPlugin({
 });
 module.exports = {
   context: __dirname + '/app',
-  entry: './index.js',
+  entry: ['./index.js'],
   output: {
     path: __dirname + '/build',
     filename: 'bundle.js'
@@ -18,5 +18,8 @@ module.exports = {
       { test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'sass-loader'], exclude: /node_modules/ }
     ]
   },
-  plugins: [injectConfig]
+  plugins: [injectConfig],
+  node: {
+    fs: 'empty'
+  }
 };

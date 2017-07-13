@@ -23,7 +23,11 @@ io.attach( app );
 io.on('join', (ctx, data)=>{
   console.log('event fire', data);
 });
-console.log('logging from the server');
+
+io.on('connection',(socket)=>{
+  console.log('user has connected');
+  console.log(socket);
+});
 
 io.on('disconnect', async ()=>{
   console.log('disconnecting socket');
