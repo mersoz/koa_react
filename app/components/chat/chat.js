@@ -23,7 +23,7 @@ export default class Chat extends React.Component{
     });
   }
 
-  async setMsg(e){
+  setMsg(e){
     this.setState({message: e.target.value});
   }
 
