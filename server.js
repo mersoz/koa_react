@@ -34,9 +34,11 @@ io.on('connection',(socket)=>{
   console.log('user has connected');
 });
 
-io.on('message', (socket)=>{
+io.on('message', async (socket)=>{
   console.log(socket.data);
+  await socket.emit('response', 'HELLO');
 });
+
 
 io.on('disconnect', async ()=>{
   await console.log('disconnecting socket');
