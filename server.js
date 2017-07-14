@@ -26,19 +26,13 @@ app.use(errHandler);
 
 io.attach( app );
 
-io.on('join', (ctx, data)=>{
-  console.log('event fire', data);
+app.io.on('connection',(socket)=>{
+  console.log('user has connected', socket);
 });
 
-io.on('connection',(socket)=>{
-  console.log('user has connected');
+io.on('message', (socket)=>{
+  console.log(io);
 });
-
-io.on('message', async (socket)=>{
-  console.log(socket);
-  socket.emit('response', 'HELLO');
-});
-
 
 io.on('disconnect', async ()=>{
   await console.log('disconnecting socket');

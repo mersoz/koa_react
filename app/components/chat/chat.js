@@ -12,7 +12,7 @@ export default class Chat extends React.Component{
     socket.emit('connection', {
       message: 'Hello from the other side'
     });
-    socket.on('message', (response)=>{
+    socket.on('response', (response)=>{
       console.log(response);
     });
   }
