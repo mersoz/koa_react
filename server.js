@@ -35,8 +35,8 @@ io.on('connection',(socket)=>{
 });
 
 io.on('message', async (socket)=>{
-  console.log(socket.data);
-  await socket.emit('response', 'HELLO');
+  console.log(socket);
+  socket.emit('response', 'HELLO');
 });
 
 
