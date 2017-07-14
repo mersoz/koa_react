@@ -34,7 +34,10 @@ io.on('connection',(socket)=>{
 });
 
 io.on('message', (socket)=>{
-  console.log(io);
+  console.log(socket);
+  io.broadcast('response', {
+    message: socket.data
+  });
 });
 
 io.on('disconnect', async ()=>{
