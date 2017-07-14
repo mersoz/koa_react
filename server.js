@@ -26,8 +26,11 @@ app.use(errHandler);
 
 io.attach( app );
 
-app.io.on('connection',(socket)=>{
-  console.log('user has connected', socket);
+io.on('connection',(socket)=>{
+  console.log('user has connected', io.connections.size);
+  io.broadcast('connections', {
+    numConnections: io.connections.size
+  });
 });
 
 io.on('message', (socket)=>{
