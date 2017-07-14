@@ -32,11 +32,14 @@ io.on('join', (ctx, data)=>{
 
 io.on('connection',(socket)=>{
   console.log('user has connected');
-  console.log(socket);
+});
+
+io.on('message', (socket)=>{
+  console.log(socket.data);
 });
 
 io.on('disconnect', async ()=>{
-  console.log('disconnecting socket');
+  await console.log('disconnecting socket');
   await io.sockets.disconnect();
   await io.sockets.close();
 });
