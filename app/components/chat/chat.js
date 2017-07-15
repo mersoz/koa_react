@@ -4,7 +4,9 @@ import $ from 'jquery';
 export default class Chat extends React.Component{
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {
+      chat: []
+    };
   }
 
   componentDidMount(){
@@ -13,11 +15,15 @@ export default class Chat extends React.Component{
     socket.emit('connection', {
       message: 'Hello from the other side'
     });
+
     socket.on('connections', (response)=>{
       console.log(response);
     });
+
     socket.on('response', (res)=>{
-      console.log(res);
+      this.setState({chat: this.state.chat.concat([res.message])}, ()=>{
+        console.log(this.state);
+      });
     });
   }
 
