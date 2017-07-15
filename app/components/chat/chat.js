@@ -1,6 +1,7 @@
 import React from 'react';
 import io from 'socket.io-client';
 import $ from 'jquery';
+import VisualChat from './visualChat';
 export default class Chat extends React.Component{
   constructor(props){
     super(props);
@@ -12,18 +13,14 @@ export default class Chat extends React.Component{
   componentDidMount(){
     const socket = io('http://localhost:3000');
     this.setState({socket});
-    socket.emit('connection', {
-      message: 'Hello from the other side'
-    });
+    socket.emit('connection');
 
     socket.on('connections', (response)=>{
       console.log(response);
     });
 
     socket.on('response', (res)=>{
-      this.setState({chat: this.state.chat.concat([res.message])}, ()=>{
-        console.log(this.state);
-      });
+      this.setState({chat: this.state.chat.concat([res.message])});
     });
   }
 
@@ -41,6 +38,7 @@ export default class Chat extends React.Component{
   render(){
     return(
       <div>
+        <VisualChat chat={this.state.chat}/>
         <label htmlFor="sendMsg"> Send a message</label>
         <input name="sendMsg" id="message" onChange={this.setMsg.bind(this)} />
         <button type="button" onClick={this.sendMsg.bind(this)}>Send</button>
