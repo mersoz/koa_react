@@ -6,10 +6,12 @@ const injectConfig = new HtmlWebpackPlugin({
 });
 module.exports = {
   context: __dirname + '/app',
-  entry: './index.js',
+  entry: [`${__dirname}/app/index.js`, 'webpack-hot-middleware/client'],
   output: {
+    publicPath: __dirname + '/build',
     path: __dirname + '/build',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    sourceMapFilename: 'build/bundle.js.map'
   },
   module: {
     loaders: [

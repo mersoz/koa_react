@@ -18,7 +18,7 @@ const compiler = webpack(config);
 mongoose.plugin(require('./lib/toJSON'));
 mongoose.Promise = require('bluebird');
 
-app.use(e2k(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.path })));
+app.use(e2k(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath })));
 app.use(e2k(webpackHotMiddleware(compiler)));
 
 mongoose.connect(dbURI);
