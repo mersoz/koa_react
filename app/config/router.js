@@ -8,7 +8,7 @@ export default class Routes extends React.Component{
       <Router>
         <div>
           <Nav />
-          <Route path="/chat" component={Chat}/ >
+          <Route path="/" component={Chat}/ >
         </div>
       </Router>
     );
