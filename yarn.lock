@@ -694,6 +694,13 @@ babel-runtime@^6.0.0, babel-runtime@^6.18.0, babel-runtime@^6.22.0:
     core-js "^2.4.0"
     regenerator-runtime "^0.10.0"
 
+babel-runtime@^6.20.0:
+  version "6.25.0"
+  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.25.0.tgz#33b98eaa5d482bb01a8d1aa6b437ad2b01aec41c"
+  dependencies:
+    core-js "^2.4.0"
+    regenerator-runtime "^0.10.0"
+
 babel-template@^6.24.1, babel-template@^6.25.0:
   version "6.25.0"
   resolved "https://registry.yarnpkg.com/babel-template/-/babel-template-6.25.0.tgz#665241166b7c2aa4c619d71e192969552b10c071"
@@ -3121,6 +3128,12 @@ koa-static@^4.0.1:
   dependencies:
     debug "^2.6.8"
     koa-send "^4.1.0"
+
+koa2-cors@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/koa2-cors/-/koa2-cors-2.0.3.tgz#43209a32dff6cf50d446d77a44fac9c95bb87c28"
+  dependencies:
+    babel-runtime "^6.20.0"
 
 koa@^2.3.0:
   version "2.3.0"

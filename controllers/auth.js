@@ -17,7 +17,8 @@ class Auth {
   async login(ctx) {
     const user = await User.findOne({ email: ctx.request.body.email}).exec();
     if(!user || !user.validatePassword(ctx.request.body.password)) return ctx.status = 401;
-    ctx.body = { token: jwt.sign({id: user.id}, secret, { expiresIn: '4h' }) };
+    const token = await jwt.sign({id: user.id}, secret, { expiresIn: '4h' });
+    ctx.body = { token, user };
   }
 }
 const auth = new Auth;
