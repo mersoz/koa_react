@@ -9,11 +9,15 @@ export default class Login extends React.Component{
     this.signIn = this.signIn.bind(this);
   }
   setUser(e){
-    this.setState({user: {[e.target.name]: e.target.value}});
+
+    this.setState({[e.target.name]: e.target.value}, ()=>{
+      console.log(this.state);
+    });
   }
   signIn(e){
     e.preventDefault();
-    $.post('http://localhost:3000/api/login', this.state.data)
+    console.log(this.state);
+    $.post('http://localhost:3000/api/login', this.state)
     .then(data=> console.log(data));
   }
 
