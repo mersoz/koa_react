@@ -15,7 +15,11 @@ export default class Login extends React.Component{
   signIn(e){
     e.preventDefault();
     $.post('http://localhost:3000/api/login', this.state)
-    .then(data=> localStorage.setItem('token', data.token));
+    .then(data => {
+      console.log(data);
+      localStorage.setItem('token', data.token);
+      this.props.history.push('/');
+    });
   }
 
   render(){
