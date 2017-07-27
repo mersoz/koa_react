@@ -10,15 +10,12 @@ export default class Login extends React.Component{
   }
   setUser(e){
 
-    this.setState({[e.target.name]: e.target.value}, ()=>{
-      console.log(this.state);
-    });
+    this.setState({[e.target.name]: e.target.value});
   }
   signIn(e){
     e.preventDefault();
-    console.log(this.state);
     $.post('http://localhost:3000/api/login', this.state)
-    .then(data=> console.log(data));
+    .then(data=> localStorage.setItem('token', data.token));
   }
 
   render(){
