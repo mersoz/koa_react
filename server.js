@@ -10,8 +10,17 @@ const cors = require('koa2-cors');
 const mongoose = require('mongoose');
 const errHandler = require('./lib/errorHandler');
 const routes = require('./config/routes');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const e2k = require('express-to-koa');
+const config = require('./webpack.config');
+const compiler = webpack(config);
 mongoose.plugin(require('./lib/toJSON'));
 mongoose.Promise = require('bluebird');
+
+app.use(e2k(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath })));
+app.use(e2k(webpackHotMiddleware(compiler)));
 
 mongoose.connect(dbURI);
 app.use(serve(`${__dirname}/build`));
