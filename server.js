@@ -16,6 +16,8 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const e2k = require('express-to-koa');
 const config = require('./webpack.config');
 const compiler = webpack(config);
+
+const getVals = require('./lib/wit');
 mongoose.plugin(require('./lib/toJSON'));
 mongoose.Promise = require('bluebird');
 
@@ -44,6 +46,8 @@ io.on('connection',(socket)=>{
 });
 
 io.on('message', (socket)=>{
+  console.log(socket);
+  getVals();
   io.broadcast('response', {
     message: socket.data
   });
