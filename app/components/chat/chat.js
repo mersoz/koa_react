@@ -20,6 +20,7 @@ export default class Chat extends React.Component{
     });
 
     socket.on('response', (res)=>{
+      console.log(res);
       this.setState({chat: this.state.chat.concat([res.message])});
     });
   }
