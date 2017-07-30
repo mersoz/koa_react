@@ -53,7 +53,7 @@ io.on('message',async (socket)=>{
   });
 
   io.broadcast('response', {
-    message: { message: val[0].value }
+    message: { message: val }
   });
 });
 
