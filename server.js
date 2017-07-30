@@ -44,7 +44,6 @@ io.on('connection',(socket)=>{
 });
 
 io.on('message', (socket)=>{
-  console.log(socket);
   io.broadcast('response', {
     message: socket.data
   });
@@ -55,5 +54,4 @@ io.on('disconnect', async ()=>{
   await io.sockets.disconnect();
   await io.sockets.close();
 });
-
 app.listen(port, ()=> console.log(`Koa is up and running on port ${port}`));
