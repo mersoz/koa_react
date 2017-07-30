@@ -46,14 +46,13 @@ io.on('connection',(socket)=>{
 });
 
 io.on('message',async (socket)=>{
-  const val = await getVals(socket.data.message);
 
   io.broadcast('response', {
     message: socket.data
   });
 
   io.broadcast('response', {
-    message: { message: val }
+    message: { message: await getVals(socket.data.message) }
   });
 });
 
