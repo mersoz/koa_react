@@ -11,6 +11,7 @@
     "add": "^2.0.6",
     "bcrypt": "^1.0.2",
     "bluebird": "^3.5.0",
+    "bottr": "^0.1.6",
     "cli": "^1.0.1",
     "css-loader": "^0.28.4",
     "express-to-koa": "^1.0.6",

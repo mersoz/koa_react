@@ -9,7 +9,7 @@ export default class Routes extends React.Component{
       <Router>
         <div>
           <Nav />
-          <Route exact path="/" component={Chat}/ >
+          <Route exact path="/chat" component={Chat}/ >
           <Route path="/login" component={Login} />
         </div>
       </Router>
