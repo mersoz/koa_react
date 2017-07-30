@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Chat from '../components/chat/chat';
 import Nav from '../components/nav/nav';
 import Login from '../components/login/login';
+
 export default class Routes extends React.Component{
   render(){
     return(

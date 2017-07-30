@@ -6,8 +6,19 @@ export default class Nav extends React.Component{
   constructor(){
     super();
     this.state = {
-      routes: ['home', 'chat', 'login']
+      routes: this.isAuthenticated() ? ['home', 'chat'] : ['login']
     };
+  }
+
+  isAuthenticated() {
+    const token = localStorage.getItem('token');
+    if(!token) return false;
+    return true;
+  }
+
+  componentDidMount() {
+    console.log(this.isAuthenticated());
+    this.isAuthenticated();
   }
 
   render(){
