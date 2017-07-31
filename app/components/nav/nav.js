@@ -21,6 +21,13 @@ export default class Nav extends React.Component{
     localStorage.removeItem('token');
   }
 
+  update() {
+    console.log('updating parent');
+    this.setState({
+      routes: this.isAuthenticated() ? ['home', 'chat'] : ['login']
+    });
+  }
+
   componentDidUpdate() {
     this.isAuthenticated();
   }
@@ -34,7 +41,7 @@ export default class Nav extends React.Component{
       );
     });
     return(
-      <VisualNav routes={routes} logout={this.logOut} auth={this.isAuthenticated()}/>
+      <VisualNav routes={routes} logout={this.logOut} auth={this.isAuthenticated()} update={this.update}/>
     );
   }
 }
