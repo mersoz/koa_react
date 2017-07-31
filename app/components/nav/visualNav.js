@@ -2,8 +2,13 @@ import React from 'react';
 
 export default class VisualNav extends React.Component{
 
-  componentDidUpdate() {
+  componentWillUpdate() {
     this.props.callBack();
+  }
+
+  shouldComponentUpdate() {
+    console.log(this.props.auth);
+    return !this.props.auth;
   }
 
   render(){

@@ -24,10 +24,12 @@ export default class Nav extends React.Component{
   }
 
   update() {
-    const token = localStorage.getItem('token');
-    this.setState({
-      routes: token ? ['home', 'chat'] : ['login']
-    });
+    console.log('rerenders');
+    if(this.isAuthenticated()){
+      this.setState({
+        routes: ['home', 'chat']
+      });
+    }
   }
 
 
