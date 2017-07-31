@@ -25,9 +25,11 @@ export default class Nav extends React.Component{
 
   update() {
     console.log('rerenders');
-    if(this.isAuthenticated()){
+    if(this.state.routes[0] !== 'home' && this.isAuthenticated()){
       this.setState({
         routes: ['home', 'chat']
+      }, ()=>{
+        console.log(this.state);
       });
     }
   }
