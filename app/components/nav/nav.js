@@ -4,7 +4,12 @@ import VisualNav from './visualNav';
 export default class Nav extends React.Component{
   constructor(){
     super();
+    this.state = {
+      isLoggedIn: this.isAuthenticated()
+    };
     this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.render = this.render.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
 
   isAuthenticated() {
@@ -14,8 +19,10 @@ export default class Nav extends React.Component{
   }
 
   logOut() {
-    console.log('removes');
     localStorage.removeItem('token');
+    this.setState({
+      isLoggedIn: false
+    });
   }
 
   render(){
