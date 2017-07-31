@@ -2,6 +2,10 @@ import React from 'react';
 
 export default class VisualNav extends React.Component{
 
+  componentDidUpdate() {
+    this.props.callBack();
+  }
+
   render(){
     return(
       <div>

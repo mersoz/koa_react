@@ -8,6 +8,8 @@ export default class Nav extends React.Component{
     this.state = {
       routes: this.isAuthenticated() ? ['home', 'chat'] : ['login']
     };
+    this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.update = this.update.bind(this);
   }
 
   isAuthenticated() {
@@ -22,15 +24,12 @@ export default class Nav extends React.Component{
   }
 
   update() {
-    console.log('updating parent');
+    const token = localStorage.getItem('token');
     this.setState({
-      routes: this.isAuthenticated() ? ['home', 'chat'] : ['login']
+      routes: token ? ['home', 'chat'] : ['login']
     });
   }
 
-  componentDidUpdate() {
-    this.isAuthenticated();
-  }
 
   render(){
     const routes = this.state.routes.map((route, i)=>{
@@ -41,7 +40,7 @@ export default class Nav extends React.Component{
       );
     });
     return(
-      <VisualNav routes={routes} logout={this.logOut} auth={this.isAuthenticated()} update={this.update}/>
+      <VisualNav routes={routes} logout={this.logOut} auth={this.isAuthenticated()} callBack={this.update}/>
     );
   }
 }
