@@ -1,15 +1,10 @@
 import React from 'react';
 import VisualNav from './visualNav';
-import {Link} from 'react-router-dom';
 
 export default class Nav extends React.Component{
   constructor(){
     super();
-    this.state = {
-      routes: this.isAuthenticated() ? ['home', 'chat'] : ['login']
-    };
     this.isAuthenticated = this.isAuthenticated.bind(this);
-    this.update = this.update.bind(this);
   }
 
   isAuthenticated() {
@@ -23,28 +18,9 @@ export default class Nav extends React.Component{
     localStorage.removeItem('token');
   }
 
-  update() {
-    console.log('rerenders');
-    if(this.state.routes[0] !== 'home' && this.isAuthenticated()){
-      this.setState({
-        routes: ['home', 'chat']
-      }, ()=>{
-        console.log(this.state);
-      });
-    }
-  }
-
-
   render(){
-    const routes = this.state.routes.map((route, i)=>{
-      return(
-        <li key={i}>
-          <Link to={route==='home'? '/' :`/${route}`}> {route}</Link>
-        </li>
-      );
-    });
     return(
-      <VisualNav routes={routes} logout={this.logOut} auth={this.isAuthenticated()} callBack={this.update}/>
+      <VisualNav logout={this.logOut} auth={this.isAuthenticated()} callBack={this.update}/>
     );
   }
 }

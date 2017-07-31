@@ -16,7 +16,6 @@ export default class Login extends React.Component{
     e.preventDefault();
     $.post('http://localhost:3000/api/login', this.state)
     .then(data => {
-      console.log(data);
       localStorage.setItem('token', data.token);
       this.props.history.push('/');
     });
