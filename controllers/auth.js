@@ -2,7 +2,7 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const { secret } = require('../config/environment');
 
-class Auth {
+class AuthController {
 
   async index(ctx) {
     ctx.body = await User.find().exec();
@@ -21,5 +21,5 @@ class Auth {
     ctx.body = { token, user };
   }
 }
-const auth = new Auth;
+const auth = new AuthController;
 module.exports = auth;
