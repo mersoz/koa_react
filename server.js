@@ -48,7 +48,6 @@ io.on('connection',(socket)=>{
 
 io.on('message',async (socket)=>{
   const user = await User.findById(socket.data.userId);
-  console.log(user);
   io.broadcast('response', {
     message: socket.data,
     sender: user.username
