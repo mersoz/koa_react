@@ -55,10 +55,8 @@ io.on('message',async (socket)=>{
   });
 
   io.broadcast('response', {
-    message: {
-      message: await getVals(socket.data.message) ,
-      sender: 'WitAi'
-    }
+    message: { message: await getVals(socket.data.message)} ,
+    sender: 'WitAi'
   });
 });
 
