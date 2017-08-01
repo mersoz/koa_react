@@ -6,6 +6,7 @@ router.get('/api/users', user.index);
 
 router.get('/api/users/:id', user.show);
 router.put('/api/users/:id', user.update);
+router.delete('/api/users/:id', user.remove);
 
 router.post('/api/register', auth.register);
 
