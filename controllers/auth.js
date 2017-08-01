@@ -6,7 +6,7 @@ class AuthController {
 
   async index(ctx) {
     ctx.body = await User.find().exec();
-    ctx.response.status = 200;
+    ctx.response.status= 200;
   }
 
   async register(ctx) {
