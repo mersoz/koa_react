@@ -16,6 +16,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const e2k = require('express-to-koa');
 const config = require('./webpack.config');
 const compiler = webpack(config);
+const User = require('./models/user');
 
 const getVals = require('./lib/wit');
 mongoose.plugin(require('./lib/toJSON'));
@@ -46,13 +47,18 @@ io.on('connection',(socket)=>{
 });
 
 io.on('message',async (socket)=>{
-
+  const user = await User.findById(socket.data.userId);
+  console.log(user);
   io.broadcast('response', {
-    message: socket.data
+    message: socket.data,
+    sender: user.username
   });
 
   io.broadcast('response', {
-    message: { message: await getVals(socket.data.message) }
+    message: {
+      message: await getVals(socket.data.message) ,
+      sender: 'WitAi'
+    }
   });
 });
 

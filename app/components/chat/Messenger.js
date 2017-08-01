@@ -7,9 +7,18 @@ export default class Messenger extends React.Component{
     this.state = {};
   }
 
+  parseJwt (token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  }
+
   sendMsg(){
+    const user = this.parseJwt(localStorage.getItem('token'));
+
     this.props.socket.emit('message', {
-      message: this.state.message
+      message: this.state.message,
+      userId: user.id
     });
     $('#message').val('');
   }
