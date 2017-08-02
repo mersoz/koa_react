@@ -19,10 +19,13 @@ export default class User extends React.Component{
   }
 
   removeUser() {
-    $.delete(this.state.url)
-    .then(()=>{
-      localStorage.removeItem('token');
-      this.props.history.push('/');
+    $.ajax({
+      url: this.state.url,
+      type: 'DELETE',
+      success: ()=>{
+        localStorage.removeItem('token');
+        this.props.history.push('/');
+      }
     });
   }
 
