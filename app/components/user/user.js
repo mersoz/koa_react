@@ -3,22 +3,32 @@ import $ from 'jquery';
 import VisaulUser from './visualUser';
 
 export default class User extends React.Component{
-  constructor(){
-    super();
-    this.state = {};
+  constructor(props){
+    super(props);
+    this.state = {
+      url: `http://localhost:3000/api/users/${props.match.params.id}`
+    };
+    this.removeUser = this.removeUser.bind(this);
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id;
-    $.get(`http://localhost:3000/api/users/${id}`)
+    $.get(`http://localhost:3000/api/users/${this.props.match.params.id}`)
     .then((res)=>{
       this.setState({user: res});
     });
   }
 
+  removeUser() {
+    $.delete(this.state.url)
+    .then(()=>{
+      localStorage.removeItem('token');
+      this.props.history.push('/');
+    });
+  }
+
   render(){
     return(
-      <VisaulUser user={this.state.user ? this.state.user : null} />
+      <VisaulUser removeUser={this.removeUser} user={this.state.user ? this.state.user : null} />
     );
   }
 }

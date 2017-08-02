@@ -6,6 +6,8 @@ export default class VisualUser extends Component {
       <div>
         <h1>{ this.props.user ? this.props.user.username:''}</h1>
         <p><strong>emal: { this.props.user ? this.props.user.email:''}</strong></p>
+        <button>Edit</button>
+        <button onClick={this.props.removeUser}>Delete</button>
       </div>
     );
   }
