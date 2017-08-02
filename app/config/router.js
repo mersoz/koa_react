@@ -14,8 +14,8 @@ export default class Routes extends React.Component{
           <Nav />
           <Route exact path="/chat" component={Chat}/ >
           <Route path="/login" component={Login} />
-          <Route path="/profile/:id" component={User} />
-          <Route exact path="/profile/:id/edit" component={UserEdit} />
+          <Route exact path="/profile/:id" component={User} />
+          <Route path="/profile/:id/edit" component={UserEdit} />
         </div>
       </Router>
     );

@@ -15,6 +15,7 @@ export default class UserEdit extends Component{
   }
 
   render() {
+    console.log(this.state);
     return(
       <div>
         UserEdit
