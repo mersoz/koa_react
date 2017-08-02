@@ -10,6 +10,7 @@ export default class Nav extends React.Component{
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.render = this.render.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.getUserId = this.getUserId.bind(this);
   }
 
   isAuthenticated() {
@@ -25,9 +26,19 @@ export default class Nav extends React.Component{
     });
   }
 
+  getUserId() {
+    return this.parseJwt(localStorage.getItem('token')).id;
+  }
+
+  parseJwt (token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  }
+
   render(){
     return(
-      <VisualNav logout={this.logOut} auth={this.isAuthenticated()} callBack={this.update}/>
+      <VisualNav logout={this.logOut} userId={this.isAuthenticated()? this.getUserId() : null} auth={this.isAuthenticated()} callBack={this.update}/>
     );
   }
 }

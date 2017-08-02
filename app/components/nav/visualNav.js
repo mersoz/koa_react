@@ -12,6 +12,13 @@ export default class VisualNav extends React.Component{
         </li>
       );
     });
+    if(this.props.auth){
+      routes.push(
+        <li key={routes.length}>
+          <Link to={`/profile/${this.props.userId}`}> Profile</Link>
+        </li>
+      );
+    }
 
     return(
       <div>
