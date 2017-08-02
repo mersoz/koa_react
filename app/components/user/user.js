@@ -9,9 +9,13 @@ export default class User extends React.Component{
     };
   }
 
-  // componentDidMount() {
-  //   $.get('http://localhost:3000/api/')
-  // }
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    $.get(`http://localhost:3000/api/users/${id}`)
+    .then((res)=>{
+      console.log(res);
+    });
+  }
 
   render(){
     return(
