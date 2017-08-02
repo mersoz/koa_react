@@ -1,16 +1,11 @@
-import {Component, React} from 'react';
+import React, {Component} from 'react';
 
 export default class VisualUser extends Component {
-  constructor(props){
-    super(props);
-    this.state= {};
-  }
-
   render() {
-    console.log(this.props.user)
     return(
       <div>
-        user
+        <h1>{ this.props.user ? this.props.user.username:''}</h1>
+        <p><strong>emal: { this.props.user ? this.props.user.email:''}</strong></p>
       </div>
     );
   }

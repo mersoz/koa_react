@@ -18,7 +18,7 @@ export default class User extends React.Component{
 
   render(){
     return(
-      <VisaulUser user={this.state.user} />
+      <VisaulUser user={this.state.user ? this.state.user : null} />
     );
   }
 }
