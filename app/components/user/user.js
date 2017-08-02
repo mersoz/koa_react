@@ -1,27 +1,24 @@
 import React from 'react';
 import $ from 'jquery';
+import VisaulUser from './visualUser';
 
 export default class User extends React.Component{
   constructor(){
     super();
-    this.state = {
-
-    };
+    this.state = {};
   }
 
   componentDidMount() {
     const id = this.props.match.params.id;
     $.get(`http://localhost:3000/api/users/${id}`)
     .then((res)=>{
-      console.log(res);
+      this.setState({user: res});
     });
   }
 
   render(){
     return(
-      <div>
-      user
-      </div>
+      <VisaulUser user={this.state.user} />
     );
   }
 }
