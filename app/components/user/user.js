@@ -15,7 +15,7 @@ export default class User extends React.Component{
   componentDidMount() {
     const token = this.state.token;
     $.ajax({
-      url: `http://localhost:3000/api/users/${this.props.match.params.id}`,
+      url: this.state.url,
       type: 'GET',
       beforeSend: function(request) {
         request.setRequestHeader('authorization', token);

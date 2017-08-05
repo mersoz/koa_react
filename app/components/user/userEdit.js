@@ -5,13 +5,21 @@ export default class UserEdit extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      url: `http://localhost:3000/api/users/${props.match.params.id}`
+      url: `http://localhost:3000/api/users/${props.match.params.id}`,
+      token: `Bearer ${localStorage.getItem('token')}`
     };
   }
 
   componentDidMount() {
-    $.get(this.state.url)
-    .then( res => this.setState({user: res}));
+    const token = this.state.token;
+    $.ajax({
+      url: this.state.url,
+      type: 'GET',
+      beforeSend: function(request) {
+        request.setRequestHeader('authorization', token);
+      },
+      success: res => this.setState({user: res})
+    });
   }
 
   render() {

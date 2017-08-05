@@ -35,7 +35,6 @@ app.use(routes.routes());
 app.use(async (ctx)=>{
   await send(ctx, 'build/index.html');
 });
-app.use(errHandler);
 
 io.attach( app );
 
@@ -64,4 +63,5 @@ io.on('disconnect', async ()=>{
   await io.sockets.disconnect();
   await io.sockets.close();
 });
+app.use(errHandler);
 app.listen(port, ()=> console.log(`Koa is up and running on port ${port}`));
