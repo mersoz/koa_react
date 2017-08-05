@@ -6,15 +6,24 @@ export default class User extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      url: `http://localhost:3000/api/users/${props.match.params.id}`
+      url: `http://localhost:3000/api/users/${props.match.params.id}`,
+      token: `Bearer ${localStorage.getItem('token')}`
     };
     this.removeUser = this.removeUser.bind(this);
   }
 
   componentDidMount() {
-    $.get(`http://localhost:3000/api/users/${this.props.match.params.id}`)
-    .then((res)=>{
-      this.setState({user: res});
+    const token = this.state.token;
+    $.ajax({
+      url: `http://localhost:3000/api/users/${this.props.match.params.id}`,
+      type: 'GET',
+      beforeSend: function(request) {
+        request.setRequestHeader('authorization', token);
+      },
+      success: res =>{
+        console.log(res);
+        this.setState({user: res});
+      }
     });
   }
 
@@ -22,6 +31,9 @@ export default class User extends React.Component{
     $.ajax({
       url: this.state.url,
       type: 'DELETE',
+      beforeSend: function(request) {
+        request.setRequestHeader('authorization', this.state.token);
+      },
       success: ()=>{
         localStorage.removeItem('token');
         this.props.history.push('/');

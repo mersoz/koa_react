@@ -15,8 +15,8 @@ export default class Nav extends React.Component{
 
   isAuthenticated() {
     const token = localStorage.getItem('token');
-    if(!token) return false;
-    return true;
+    if(token && token.match(/\./g).length) return true;
+    return false;
   }
 
   logOut() {
