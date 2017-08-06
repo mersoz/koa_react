@@ -15,7 +15,7 @@ export default class VisualRegister extends Component{
           <input onChange={this.props.setUser} type="password" name="password" placeholder="password" />
           <label htmlFor="passwordConfirmation">passwordConfirmation</label>
           <input onChange={this.props.setUser} type="password" name="passwordConfirmation" placeholder="Demi" />
-          <button>Join us!</button>
+          <button onClick={this.props.register}>Join us!</button>
         </form>
       </div> : <div> loading ..</div>
     );

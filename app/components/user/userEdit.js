@@ -25,7 +25,9 @@ export default class UserEdit extends Component{
   }
 
   setUser(e) {
-    this.setState({user: {[e.target.name]: e.target.value }});
+    const user = this.state.user;
+    user[e.target.name] = e.target.value;
+    this.setState({ user });
   }
 
   updateUser(e) {
