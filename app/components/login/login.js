@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-
+import LoginVisual from './loginVisual';
 export default class Login extends React.Component{
   constructor(props){
     super(props);
@@ -9,7 +9,6 @@ export default class Login extends React.Component{
     this.signIn = this.signIn.bind(this);
   }
   setUser(e){
-
     this.setState({[e.target.name]: e.target.value});
   }
   signIn(e){
@@ -23,13 +22,7 @@ export default class Login extends React.Component{
 
   render(){
     return(
-      <form onSubmit={this.signIn}>
-        <label htmlFor="email">E-Mail</label>
-        <input onChange={this.setUser} name="email" type="text"/>
-        <label htmlFor="password"> password</label>
-        <input onChange={this.setUser} name="password" type="password" />
-        <input type="submit" />
-      </form>
+      <LoginVisual setUser={this.setUser} signIn={this.signIn} />
     );
   }
 }

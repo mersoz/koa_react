@@ -21,7 +21,6 @@ export default class User extends React.Component{
         request.setRequestHeader('authorization', token);
       },
       success: res =>{
-        console.log(res);
         this.setState({user: res});
       }
     });
