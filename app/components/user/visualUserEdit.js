@@ -14,7 +14,7 @@ export default class VisualUserEdit extends Component {
         email
       </label>
       <input type="text" name="email" onChange={this.props.setUser} defaultValue={this.props.user.email}/>
-      <button>Update!</button>
+      <button onClick={this.props.updateUser}>Update!</button>
       </form> : <div>Loading..</div>
     );
   }

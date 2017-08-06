@@ -9,6 +9,7 @@ export default class UserEdit extends Component{
       token: `Bearer ${localStorage.getItem('token')}`
     };
     this.setUser = this.setUser.bind(this);
+    this.updateUser = this.updateUser.bind(this);
   }
 
   componentDidMount() {
@@ -16,7 +17,7 @@ export default class UserEdit extends Component{
     $.ajax({
       url: this.state.url,
       type: 'GET',
-      beforeSend: function(request) {
+      beforeSend: (request)=> {
         request.setRequestHeader('authorization', token);
       },
       success: res => this.setState({user: res})
@@ -27,9 +28,26 @@ export default class UserEdit extends Component{
     this.setState({user: {[e.target.name]: e.target.value }});
   }
 
+  updateUser(e) {
+    e.preventDefault();
+    const user = this.state.user;
+    const token = this.state.token;
+    $.ajax({
+      url: this.state.url,
+      type: 'PUT',
+      data: user,
+      beforeSend: (request)=> {
+        request.setRequestHeader('authorization', token);
+      },
+      success: () => {
+        this.props.history.push(`/profile/${this.props.match.params.id}`);
+      }
+    });
+  }
+
   render() {
     return(
-      <VisualUserEdit user={this.state.user} setUser={this.setUser}/>
+      <VisualUserEdit user={this.state.user} setUser={this.setUser} updateUser={this.updateUser}/>
     );
   }
 }
