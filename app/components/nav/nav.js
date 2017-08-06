@@ -11,12 +11,21 @@ export default class Nav extends React.Component{
     this.render = this.render.bind(this);
     this.logOut = this.logOut.bind(this);
     this.getUserId = this.getUserId.bind(this);
+    this.isValidToken = this.isValidToken.bind(this);
   }
 
   isAuthenticated() {
     const token = localStorage.getItem('token');
-    if(token && token.match(/\./g).length) return true;
-    return false;
+    if(token) this.isValidToken(token);
+    try {
+      if(token.match(/\./g).length) return true;
+    } catch(err) {
+      return false;
+    }
+  }
+
+  isValidToken(token) {
+    if(this.parseJwt(token).exp < parseInt(Date.now().toString().substring(0, 10))) localStorage.removeItem('token');
   }
 
   logOut() {
