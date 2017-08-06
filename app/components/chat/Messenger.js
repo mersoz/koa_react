@@ -4,7 +4,10 @@ import $ from 'jquery';
 export default class Messenger extends React.Component{
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {
+      user: this.parseJwt(localStorage.getItem('token'))
+    };
+    this.isTyping = this.isTyping.bind(this);
   }
 
   parseJwt (token) {
@@ -14,18 +17,28 @@ export default class Messenger extends React.Component{
   }
 
   sendMsg(){
-    const user = this.parseJwt(localStorage.getItem('token'));
-
     this.props.socket.emit('message', {
       message: this.state.message,
-      userId: user.id
+      userId: this.state.user.id
     });
     $('#message').val('');
   }
 
   setMsg(e){
-    this.setState({message: e.target.value});
+    this.setState({message: e.target.value}, ()=>{
+      this.isTyping();
+    });
   }
+
+  isTyping() {
+    console.log(this.state);
+    if(this.state.message.length > 0){
+      this.props.socket.emit('typing', {
+        userId: this.state.user.id
+      });
+    }
+  }
+
 
   render(){
     return(
