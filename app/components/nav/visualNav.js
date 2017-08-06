@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 export default class VisualNav extends React.Component{
 
   render(){
-    let routes = this.props.auth ? ['home', 'chat'] : ['login'];
+    let routes = this.props.auth ? ['home', 'chat'] : ['login', 'register'];
     routes = routes.map((route, i)=>{
       return(
         <li key={i}>
