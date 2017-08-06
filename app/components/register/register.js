@@ -15,7 +15,7 @@ export default class Register extends Component {
   setUser(e) {
     const user = this.state.user;
     user[e.target.name] = e.target.value;
-    this.setState({ user }, ()=> console.log(this.state));
+    this.setState({ user });
   }
 
   register(e) {
@@ -26,7 +26,7 @@ export default class Register extends Component {
       type: 'POST',
       data: user,
       success: (res)=> {
-        console.log(res);
+        this.props.history.push('/login');
       }
     });
   }

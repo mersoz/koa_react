@@ -10,7 +10,7 @@ export default class Login extends React.Component{
   }
   setUser(e){
 
-    this.setState({[e.target.name]: e.target.value}, console.log(this.state));
+    this.setState({[e.target.name]: e.target.value});
   }
   signIn(e){
     e.preventDefault();
