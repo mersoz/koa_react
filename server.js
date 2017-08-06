@@ -51,7 +51,7 @@ io.on('message',async (socket)=>{
     message: socket.data,
     sender: user.username
   });
-
+  console.log(await getVals(socket.data.message));
   io.broadcast('response', {
     message: { message: await getVals(socket.data.message)} ,
     sender: 'WitAi'
