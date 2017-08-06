@@ -6,7 +6,8 @@ export default class Chat extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      chat: []
+      chat: [],
+      isTyping: []
     };
   }
 
@@ -22,13 +23,17 @@ export default class Chat extends React.Component{
     socket.on('response', (res)=>{
       this.setState({chat: this.state.chat.concat([res])});
     });
+
+    socket.on('typing', (res) => {
+      this.setState({isTyping: this.state.isTyping.concat([res.user.username])});
+    });
   }
 
 
   render(){
     return(
       <div>
-        <VisualChat chat={this.state.chat}/>
+        <VisualChat chat={this.state.chat} isTyping={this.state.isTyping}/>
         <Messenger socket={this.state.socket}/>
       </div>
     );

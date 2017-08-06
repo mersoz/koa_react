@@ -2,6 +2,7 @@ import React from 'react';
 
 export default class VisualChat extends React.Component{
   render(){
+    console.log(this.props.isTyping.join());
     const chat = this.props.chat.map((res, index)=>{
       return(
         <li key={index}>
@@ -10,9 +11,12 @@ export default class VisualChat extends React.Component{
       );
     });
     return(
-      <ul>
-        {chat}
-      </ul>
+      <div>
+        <ul>
+          {chat}
+        </ul>
+        {this.props.isTyping.length > 0 ? `${this.props.isTyping.join()}`: ''}
+      </div>
     );
   }
 }

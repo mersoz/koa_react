@@ -31,7 +31,6 @@ export default class Messenger extends React.Component{
   }
 
   isTyping() {
-    console.log(this.state);
     if(this.state.message.length > 0){
       this.props.socket.emit('typing', {
         userId: this.state.user.id
