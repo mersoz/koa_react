@@ -57,13 +57,16 @@ io.on('message',async (socket)=>{
     sender: 'WitAi'
   });
 });
-
+const isTyping = [];
 io.on('typing', async (socket)=> {
   const user = await User.findById(socket.data.userId);
-
-  io.broadcast('typing', {
-    user
-  });
+  if(!isTyping.includes(user._id)) {
+    console.log(!isTyping.includes(user._id));
+    isTyping.push(user._id);
+    io.broadcast('typing', {
+      user
+    });
+  }
 });
 
 io.on('disconnect', async ()=>{
