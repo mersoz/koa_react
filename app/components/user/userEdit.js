@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-
+import VisualUserEdit from './visualUserEdit';
 export default class UserEdit extends Component{
   constructor(props) {
     super(props);
@@ -8,6 +8,7 @@ export default class UserEdit extends Component{
       url: `http://localhost:3000/api/users/${props.match.params.id}`,
       token: `Bearer ${localStorage.getItem('token')}`
     };
+    this.setUser = this.setUser.bind(this);
   }
 
   componentDidMount() {
@@ -22,11 +23,13 @@ export default class UserEdit extends Component{
     });
   }
 
+  setUser(e) {
+    this.setState({user: {[e.target.name]: e.target.value }});
+  }
+
   render() {
     return(
-      <div>
-        UserEdit
-      </div>
+      <VisualUserEdit user={this.state.user} setUser={this.setUser}/>
     );
   }
 }
