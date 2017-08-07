@@ -25,7 +25,7 @@ mongoose.Promise = require('bluebird');
 app.use(e2k(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath })));
 app.use(e2k(webpackHotMiddleware(compiler)));
 
-mongoose.connect(dbURI);
+mongoose.connect(dbURI, {useMongoClient: true});
 app.use(serve(`${__dirname}/build`));
 app.use(bodyParser());
 app.use(cors());
@@ -60,9 +60,8 @@ io.on('message',async (socket)=>{
 const isTyping = [];
 io.on('typing', async (socket)=> {
   const user = await User.findById(socket.data.userId);
-  if(!isTyping.includes(user._id)) {
-    console.log(!isTyping.includes(user._id));
-    isTyping.push(user._id);
+  if(!isTyping.includes(user)) {
+    isTyping.push(user);
     io.broadcast('typing', {
       user
     });

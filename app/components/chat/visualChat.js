@@ -15,7 +15,7 @@ export default class VisualChat extends React.Component{
         <ul>
           {chat}
         </ul>
-        {this.props.isTyping.length > 0 ? `${this.props.isTyping.join()}`: ''}
+        {this.props.isTyping.length > 0 ? `${this.props.isTyping.join()} is typing`: ''}
       </div>
     );
   }
