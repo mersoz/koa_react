@@ -1,1 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600');
 
+$raleway: 'Raleway', sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+
+}
+
+body {
+  background-color: rgb(139, 216, 226);
+  font-family: $raleway;
+  // font-weight: 600;
+  div#app * {
+    display: block;
+    margin: 0 auto;
+  }
+  div#app {
+    ul:not(#chat) {
+      // position: absolute;
+      // top: 50%;
+      // left: 50%;
+      // transform: translate(-50%, -50%);
+      list-style: none;
+      background-color: aliceblue;
+      li {
+        margin: 1rem auto;
+        display: inline-block;
+        padding: 1rem 3rem;
+        // border-radius: 1rem;
+        text-transform: uppercase;
+        cursor: pointer;
+        a {
+          text-decoration: none;
+          color: rgb(0, 44, 78);
+        }
+      }
+    }
+    ul#chat {
+      padding: 2rem 5rem;
+      li {
+        padding: 1rem;
+        p {
+          text-align: left;
+          strong {
+            display: inline-block;
+
+          }
+        }
+      }
+    }
+    h1 {
+      padding: 1rem 0;
+
+    }
+    form * {
+      margin: 1rem auto;
+    }
+    label {
+      text-transform: capitalize;
+    }
+    button, input {
+      padding: .5rem 1rem;
+      border-radius: 1rem;
+      background-color: white;
+      border-color: white;
+      font-family: $raleway;
+      font-weight: 600;
+    }
+    button, input[type="submit"] {
+      cursor: pointer;
+    }
+
+    div#profile {
+      // background-color: red;
+      a.button, button {
+        display: inline-block;
+        margin: .5rem;
+        width: 6rem;
+      }
+    }
+  }
+}

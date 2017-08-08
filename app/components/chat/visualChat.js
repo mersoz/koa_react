@@ -6,13 +6,13 @@ export default class VisualChat extends React.Component{
     const chat = this.props.chat.map((res, index)=>{
       return(
         <li key={index}>
-          <p><strong>{res.sender}</strong>: {res.message.message}</p>
+          <p><strong>{res.sender}:</strong> {res.message.message}</p>
         </li>
       );
     });
     return(
       <div>
-        <ul>
+        <ul id="chat">
           {chat}
         </ul>
         {this.props.isTyping.length > 0 ? `${this.props.isTyping.join()} is typing`: ''}
